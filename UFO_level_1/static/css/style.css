@@ -76,7 +76,10 @@ select {
 #table-area th {
   text-align: center;
 }
-
+/* table cells align */
+td {
+  text-align: center!important;
+}
 #table-area th:first-child,
 #table-area th:nth-child(2),
 #table-area th:nth-child(6) {
