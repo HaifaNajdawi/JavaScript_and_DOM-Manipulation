@@ -2,6 +2,8 @@
 var tableData = data;
 
 function generateTable(table, data) {
+    tableHtml= d3.select("tbody")
+    tableHtml.html("")
     for (let element of data) {
         // add a row 
       let row = table.insertRow();
@@ -16,32 +18,45 @@ function generateTable(table, data) {
     }
   };
   // grab table and pass that to our function
-  let table = document.querySelector("table");
+  let table = document.querySelector("tbody");
   generateTable(table, tableData);
  // --------------------------------------------
- // click is save an event on button when you are writing
- $('#filter-btn').on('click',function(){
-     // this indicate to the button
-    var value = $('#filter-btn').val();
-    // console.log('value:' ,value);
-    var data_1 = searchTable(value,tableData);
-    var rowCount = table.rows.length;
-    for (var i = 1; i < rowCount; i++) {
-        table.deleteRow(1);
-    }
-    generateTable(table, data_1);
-})
-  
 
-//-----------------------------------------------------
-function searchTable(value,data){
-    var filterCity=[]
-    for (let element of data) {
-        if(element.city.toLowerCase().includes(value.toLowerCase()))
-        {
-            filterCity.push(element);
-        }
-    return filterCity;
-    
+function filterData(input1, value){
+    d3.event.preventDefault();
+    input=d3.select(input1)
+    inputValue=input.property("value")
+    console.log("input",inputValue)
+    filterTable=tableData.filter(data1 => data1.value === inputValue)
+    console.log("filter",filterTable)
+    generateTable(table,filterTable)
+  
 }
-}
+
+
+dateButton=d3.select("#date-btn")
+dateButton.on("click",function(){
+    filterData("#datetime",datetime)
+
+})
+cityButton=d3.select("#city-btn")
+cityButton.on("click",function(){
+    filterData("#city",city)
+})
+stateButton=d3.select("#date-btn")
+stateButton.on("click",function(){
+    filterData("#state",state)
+
+})
+countryButton=d3.select("#date-btn")
+countryButton.on("click",function(){
+    filterData("#country",country)
+
+})
+shapeButton=d3.select("#date-btn")
+shapeButton.on("click",function(){
+    filterData("#shape",shape)
+
+})
+
+
