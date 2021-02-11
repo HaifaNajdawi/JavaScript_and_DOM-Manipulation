@@ -22,12 +22,12 @@ function generateTable(table, data) {
   generateTable(table, tableData);
  // --------------------------------------------
 
-function filterData(input1, value){
+function filterData(input1, name){
     d3.event.preventDefault();
     input=d3.select(input1)
     inputValue=input.property("value")
     console.log("input",inputValue)
-    filterTable=tableData.filter(data1 => data1.value === inputValue)
+    filterTable=tableData.filter(data1 => data1.name === inputValue)
     console.log("filter",filterTable)
     generateTable(table,filterTable)
   
@@ -35,7 +35,7 @@ function filterData(input1, value){
 
 
 dateButton=d3.select("#date-btn")
-dateButton.on("click",function(){
+dateButton.on("click",() => {
     filterData("#datetime",datetime)
 
 })
@@ -57,6 +57,14 @@ shapeButton=d3.select("#shape-btn")
 shapeButton.on("click",function(){
     filterData("#shape",shape)
 
+})
+resetButton=d3.select("#reset-btn")
+resetButton.on("click",function(){
+    generateTable(table,tableData)
+})
+
+d3.selectAll("button").on("click",function(){
+    console.log(this)
 })
 
 
