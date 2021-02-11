@@ -32,7 +32,6 @@ generateTable(table, tableData);
 
 // --------------------------------------------------------
 button= d3.select("#filter-btn")
-input=d3.select("#datetime")
 
 button.on("click",function(){
   // Prevent the page from refreshing
