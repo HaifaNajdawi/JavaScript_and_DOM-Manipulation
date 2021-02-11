@@ -32,7 +32,7 @@ generateTable(table, tableData);
 
 
 // --------------------------------------------------------
-button= d3.select("#filter-btn");
+button= d3.selectAll("tr");
 
 button.on("click",function(){
   // Prevent the page from refreshing

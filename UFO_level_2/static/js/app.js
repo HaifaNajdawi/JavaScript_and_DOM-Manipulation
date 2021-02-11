@@ -41,10 +41,10 @@ function filterData(input1, name){
 // select the button(event)
 dateButton=d3.select("#date-btn");
 // call `on` (event lessener) to run the function that will work 
-dateButton.on("click",() => {
+window.onclick = () => {
     filterData("#datetime",datetime)
 
-});
+};
 cityButton=d3.select("#city-btn");
 cityButton.on("click",function(){
     filterData("#city",city)
