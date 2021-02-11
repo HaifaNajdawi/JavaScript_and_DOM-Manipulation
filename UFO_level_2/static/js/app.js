@@ -36,15 +36,11 @@ function generateTable(table, data) {
 //-----------------------------------------------------
 function searchTable(value,data){
     var filterCity=[]
-    var filterstate=[]
     for (let element of data) {
         if(element.city.toLowerCase().includes(value.toLowerCase()))
         {
             filterCity.push(element);
         }
-    //     else if (element.state.toLowerCase().includes(value.toLowerCase()))
-    //         filterstate.push(element)
-    // }
     return filterCity;
     
 }
