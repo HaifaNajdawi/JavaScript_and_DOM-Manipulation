@@ -23,15 +23,14 @@ function generateTable(table, data) {
  // --------------------------------------------
 
  //filter the table function
-function filterData(input1, name){
-    // Prevent the page from refreshing
+function filterData(userInput, key){
     d3.event.preventDefault();
-    // select input from the user
-    input=d3.select(input1);
+    input=d3.select(userInput);
     inputValue=input.property("value");
-    console.log("input",inputValue);
-    // filter the input from the table
-    filterTable=tableData.filter(data1 => data1.name === inputValue);
+    console.log("inputValue",inputValue);
+    console.log("key",key); 
+   // filter the input from the table
+    filterTable=tableData.filter(data1 => data1[key] === inputValue);
     console.log("filter",filterTable);
     // load the table with the data
     generateTable(table,filterTable);
@@ -39,35 +38,32 @@ function filterData(input1, name){
 }
 
 // select the button(event)
-dateButton=d3.select("#date-btn");
-// call `on` (event lessener) to run the function that will work 
-window.onclick = () => {
-    filterData("#datetime",datetime)
+filterButton=d3.select("#filter-btn");
 
-};
-cityButton=d3.select("#city-btn");
-cityButton.on("click",function(){
+// call `on` (event lessener) to run the function that will work 
+filterButton.on("click",() => {
+    
+    filterData("#datetime",'datetime')
+
+});
+filterButton.on("click",() => {
     filterData("#city",city)
 });
-stateButton=d3.select("#state-btn");
-stateButton.on("click",function(){
+filterButton.on("click",() => {
     filterData("#state",state)
 
 });
-countryButton=d3.select("#country-btn");
-countryButton.on("click",function(){
+filterButton.on("click",() => {
     filterData("#country",country)
 
 });
-shapeButton=d3.select("#shape-btn");
-shapeButton.on("click",function(){
+filterButton.on("click",() => {
     filterData("#shape",shape)
 
 });
 
 // reset the table from the begnning button 
-resetButton=d3.select("#reset-btn");
-resetButton.on("click",function(){
+filterButton.on("click",() => {
     generateTable(table,tableData)
 });
 // just to know button clicked 
