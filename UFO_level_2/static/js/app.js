@@ -43,17 +43,17 @@ cityButton=d3.select("#city-btn")
 cityButton.on("click",function(){
     filterData("#city",city)
 })
-stateButton=d3.select("#date-btn")
+stateButton=d3.select("#state-btn")
 stateButton.on("click",function(){
     filterData("#state",state)
 
 })
-countryButton=d3.select("#date-btn")
+countryButton=d3.select("#country-btn")
 countryButton.on("click",function(){
     filterData("#country",country)
 
 })
-shapeButton=d3.select("#date-btn")
+shapeButton=d3.select("#shape-btn")
 shapeButton.on("click",function(){
     filterData("#shape",shape)
 
