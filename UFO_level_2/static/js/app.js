@@ -1,6 +1,12 @@
 // from data.js
 var tableData = data;
 
+// just to know button clicked 
+d3.selectAll("button").on("click",function(){
+  console.log(this)
+});
+
+
 function generateTable(table, data) {
     tableHtml= d3.select("tbody")
     tableHtml.html("")
@@ -23,18 +29,10 @@ function generateTable(table, data) {
  // --------------------------------------------
 
  //filter the table function
-function filterData(userInput, key){
-    d3.event.preventDefault();
+function filterData(userInput){
     input=d3.select(userInput);
-    inputValue=input.property("value");
-    console.log("inputValue",inputValue);
-    console.log("key",key); 
-   // filter the input from the table
-    filterTable=tableData.filter(data1 => data1[key] === inputValue);
-    console.log("filter",filterTable);
-    // load the table with the data
-    generateTable(table,filterTable);
-  
+    inputValue=input.property("value");  
+  return inputValue
 }
 
 // select the button(event)
@@ -42,33 +40,25 @@ filterButton=d3.select("#filter-btn");
 
 // call `on` (event lessener) to run the function that will work 
 filterButton.on("click",() => {
-    
-    filterData("#datetime",'datetime')
+   // filter the input from the table
+    filterTable=tableData.filter(item => (item.datetime === filterData("#datetime") || filterData("#datetime") === "") 
+    && (item.city === filterData("#city") || filterData("#city") === "")
+    && (item.state === filterData("#state") || filterData("#state") === "")
+    && (item.country === filterData("#country") || filterData("#country") === "") 
+    && (item.shape === filterData("#shape") || filterData("#shape") === ""));
+    console.log("filterTable",filterTable);
+    generateTable(table,filterTable);
 
-});
-filterButton.on("click",() => {
-    filterData("#city",city)
-});
-filterButton.on("click",() => {
-    filterData("#state",state)
-
-});
-filterButton.on("click",() => {
-    filterData("#country",country)
-
-});
-filterButton.on("click",() => {
-    filterData("#shape",shape)
 
 });
 
+resetButton=d3.select("#reset-btn")
 // reset the table from the begnning button 
-filterButton.on("click",() => {
+resetButton.on("click",() => {
     generateTable(table,tableData)
+    document.getElementById('datetime').value = ''
+    document.getElementById('city').value = ''
+    document.getElementById('state').value = ''
+    document.getElementById('country').value = ''
+    document.getElementById('shape').value = ''
 });
-// just to know button clicked 
-d3.selectAll("button").on("click",function(){
-    console.log(this)
-});
-
-
