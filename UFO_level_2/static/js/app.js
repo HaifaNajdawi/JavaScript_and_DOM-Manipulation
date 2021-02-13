@@ -52,8 +52,8 @@ filterButton.on("click",() => {
 
 });
 
-resetButton=d3.select("#reset-btn")
 // reset the table from the begnning button 
+resetButton=d3.select("#reset-btn")
 resetButton.on("click",() => {
     generateTable(table,tableData)
     document.getElementById('datetime').value = ''
