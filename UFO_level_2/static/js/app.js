@@ -56,6 +56,7 @@ filterButton.on("click",() => {
 resetButton=d3.select("#reset-btn")
 resetButton.on("click",() => {
     generateTable(table,tableData)
+    // clear the input fileds 
     document.getElementById('datetime').value = ''
     document.getElementById('city').value = ''
     document.getElementById('state').value = ''
